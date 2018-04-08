@@ -125,6 +125,10 @@
         </div>
     </section>
 
+    <div class="footer">
+        <h6>© 2018 DryOn Inc. All rights reserved. </h6>
+    </div>
+
         <script src="assets/js/vendor/jquery-1.11.2.min.js"></script>
         <script src="assets/js/vendor/bootstrap.min.js"></script>
         <script src="assets/js/jquery.easypiechart.min.js"></script>

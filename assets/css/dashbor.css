@@ -1,5 +1,4 @@
 section#laundry>div.container{
-    background:#fff; 
     padding-top:40px; 
     text-align:center;
     width:1349px;
@@ -29,6 +28,14 @@ section#home{
 section#promotion{
     width:1349px;
     height:680px;
+}
+
+.footer{
+	width: 1349px;
+	height: 100px;
+	background: #032f3e;
+	color: #fff;
+	text-align: center
 }
 
 #slide{
