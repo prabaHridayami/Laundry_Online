@@ -39,7 +39,7 @@
                 $no_telp = $this->input->post('no_telp');
                 $email = $this->input->post('email');
                 $username = $this->input->post('username');
-                $password = $this->input->post('password');
+                $password = md5($this->input->post('password'));
                 $tgl_lahir = $this->input->post('tgl_lahir');
                 $alamat = $this->input->post('alamat');
                 $jk = $this->input->post('jenis_kelamin');
@@ -48,7 +48,7 @@
 
                 if($this->user->create_user($nama, $no_telp, $email, $username, $password, $tgl_lahir, $alamat, $jk, $kabupaten, $status)){
                     $this->session->set_flashdata('Successfully','Register is success');
-                    redirect('Pages/view/signupform','refresh');
+                    redirect('Pages/view/dashbor','refresh');
                 }
             }
         }

@@ -19,25 +19,14 @@
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/css/plugins.css"/>
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/fonts/stylesheet.css"/>
     <script src="<?php echo base_url()?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url()?>assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" type="text/javascript"></script>
-    <script>
-        function myFunction(s) {
-            var x = document.getElementById(s);
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
-        
+    <script src="<?php echo base_url()?>assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" type="text/javascript"></script>        
 </head>
 
 <body>
 <div class="container">
     <div class="nav-top clearfix">
         <div class="logo">
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="<?php echo base_url()?>">
                 <img class="logonav" src="<?php echo base_url()?>assets/image/logo-laundry.png" alt="logo">
             </a>
         </div>
@@ -50,7 +39,6 @@
                     <a href=""><i class="fa fa-google-plus"></i></a>
                     <a href=""><i class="fa fa-instagram"></i></a>
                 </li> 
-                <li><a href="<?php echo base_url()?>/signupform"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="#" id="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
@@ -59,100 +47,99 @@
         </button>
     </div>
 </div>
-<div class="blue">
+<div class="blue"></div>
+<div class="atas">
+    <h3>Register</h3>
+    <?php if (validation_errors()) : ?>
+        <div class="col-md-5">
+            <div class="alert alert-danger" role="alert" style="margin-left:100px;">
+                <?= validation_errors() ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($error)) : ?>
+        <div class="col-md-5">
+            <div class="alert alert-danger" role="alert" style="margin-left:100px;>
+                <?= $error ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="col-md-12">
 </div>
-    <div class="atas">
-        <h3>Register</h3>
-        <?php if (validation_errors()) : ?>
-			<div class="col-md-12">
-				<div class="alert alert-danger" role="alert">
-					<?= validation_errors() ?>
-				</div>
-			</div>
-		<?php endif; ?>
-		<?php if (isset($error)) : ?>
-			<div class="col-md-12">
-				<div class="alert alert-danger" role="alert">
-					<?= $error ?>
-				</div>
-			</div>
-		<?php endif; ?>
-		<div class="col-md-12">
+<form method="post" action="<?php echo base_url()?>users/register">
+<?php if($responce = $this->session->flashdata('Successfully')):
+    echo '<script type="text/javascript">';
+    echo 'BootstrapDialog.alert(<?php echo $responce;?>)';
+    echo '</script>';
+?>
+<?php endif;?>
+    <br>
+    <br>
+    <p>Fill in the details to register in our website!!!</p>    
+    <div class="input-group" style="margin-bottom: 10px">
+        <span class="input-group-addon" id="basic-addon1"></span>
+        <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama">
     </div>
-    <form method="post" action="<?php echo base_url()?>users/register">
-    <?php if($responce = $this->session->flashdata('Successfully')): ?>
-      <div class="box-header">
-        <div class="col-md-12">
-           <div class="alert alert-success"><?php echo $responce;?></div>
-        </div>
-      </div>
-    <?php endif;?>
-        <br>
-        <p>Fill in the details to register in our website!!!</p>    
-        <div class="input-group" style="margin-bottom: 10px">
-            <span class="input-group-addon" id="basic-addon1"></span>
-            <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama">
-        </div>
 
-        <div class="input-group" style="margin-bottom: 10px">
+    <div class="input-group" style="margin-bottom: 10px">
+        <span class="input-group-addon" id="basic-addon1"></span>
+        <input type="text" class="form-control" placeholder="Nomor Telepon" name="no_telp">
+    </div>
+    
+    <div class="input-group" style="margin-bottom: 10px">
             <span class="input-group-addon" id="basic-addon1"></span>
-            <input type="text" class="form-control" placeholder="Nomor Telepon" name="no_telp">
-        </div>
-        
-        <div class="input-group" style="margin-bottom: 10px">
-                <span class="input-group-addon" id="basic-addon1"></span>
-                <input type="email" class="form-control" placeholder="E-mail" name="email">
-        </div>
+            <input type="email" class="form-control" placeholder="E-mail" name="email">
+    </div>
 
-        <div class="input-group" style="margin-bottom: 10px">
-            <span class="input-group-addon" id="basic-addon1"></span>
-            <input type="text" class="form-control" placeholder="Username" name="username">
-        </div>
+    <div class="input-group" style="margin-bottom: 10px">
+        <span class="input-group-addon" id="basic-addon1"></span>
+        <input type="text" class="form-control" placeholder="Username" name="username">
+    </div>
 
-        <div class="input-group" style="margin-bottom: 10px">
-            <span class="input-group-addon" id="basic-addon1"></span>
-            <input type="password" class="form-control" id="myInput" placeholder="Password" name="password">
-        </div>
-        <input type="checkbox" onclick="myFunction('myInput')">Show Password
+    <div class="input-group" style="margin-bottom: 10px">
+        <span class="input-group-addon" id="basic-addon1"></span>
+        <input type="password" class="form-control" id="myInput" placeholder="Password" name="password">
+    </div>
+    <input type="checkbox" onclick="myFunction('myInput')">Show Password
 
-        <div class="input-group" style="margin-bottom: 10px">
-            <span class="input-group-addon" id="basic-addon1"></span>
-            <input type="date" class="form-control" placeholder="Masukkan tanggal lahir" name="tgl_lahir">
-        </div>
+    <div class="input-group" style="margin-bottom: 10px">
+        <span class="input-group-addon" id="basic-addon1"></span>
+        <input type="date" class="form-control" placeholder="Masukkan tanggal lahir" name="tgl_lahir">
+    </div>
 
-        <div class="input-group" style="margin-bottom: 10px">
-            <span class="input-group-addon" id="basic-addon1"></span>
-            <input type="text" class="form-control" placeholder="Masukkan alamat" name="alamat">
-        </div>
+    <div class="input-group" style="margin-bottom: 10px">
+        <span class="input-group-addon" id="basic-addon1"></span>
+        <input type="text" class="form-control" placeholder="Masukkan alamat" name="alamat">
+    </div>
 
-        <div class="input-group" style="margin-bottom: 10px">
+    <div class="input-group" style="margin-bottom: 10px">
+        <span class="input-group-addon" id="basic-addon1"></span>
+        <select class="form-control" name="jenis_kelamin">
+            <option disabled selected style="display:none">Pilih Jenis Kelamin</option>
+            <option value="Laki-Laki">Laki-Laki</option>
+            <option value="Perempuan">Perempuan</option>
+        </select>
+    </div>
+
+    <div class="input-group" style="margin-bottom: 10px">
             <span class="input-group-addon" id="basic-addon1"></span>
-            <select class="form-control" name="jenis_kelamin">
-                <option disabled selected style="display:none">Pilih Jenis Kelamin</option>
-                <option value="Laki-Laki">Laki-Laki</option>
-                <option value="Perempuan">Perempuan</option>
+            <select class="form-control" name="kabupaten">
+                <option disabled selected style="display:none">Pilih Kabupaten</option>
+                <?php foreach($kabupaten as $kabupaten ): ?>
+                    <option value="<?php echo $kabupaten->id; ?>"><?php echo $kabupaten->nama; ?></option>';
+                    <?php endforeach; ?>
             </select>
         </div>
-
         <div class="input-group" style="margin-bottom: 10px">
                 <span class="input-group-addon" id="basic-addon1"></span>
-                <select class="form-control" name="kabupaten">
-                    <option disabled selected style="display:none">Pilih Kabupaten</option>
-                    <?php foreach($kabupaten as $kabupaten ): ?>
-                        <option value="<?php echo $kabupaten->id; ?>"><?php echo $kabupaten->nama; ?></option>';
-                        <?php endforeach; ?>
+                <select class="form-control" name="status_member">
+                    <option disabled selected style="display:none">Pilih Status Member</option>
+                    <option value="Premium">Premium</option>
+                    <option value="Biasa">Biasa</option>
                 </select>
             </div>
-            <div class="input-group" style="margin-bottom: 10px">
-                    <span class="input-group-addon" id="basic-addon1"></span>
-                    <select class="form-control" name="status_member">
-                        <option disabled selected style="display:none">Pilih Status Member</option>
-                        <option value="Premium">Premium</option>
-                        <option value="Biasa">Biasa</option>
-                    </select>
-                </div>
-            <button name="register" type="submit" class="btn btn-primary" style="width: 100%;margin-bottom: 10px; float:left;" >Register</button>
-    </form>
+        <button name="register" type="submit" class="btn btn-primary" style="width: 100%;margin-bottom: 10px;" >Register</button>
+</form>
 </div>
 </body>
 

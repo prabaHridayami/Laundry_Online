@@ -82,7 +82,7 @@
                 <div>
                     <input id="login-bot" type="submit" value="Login" />
                     <?php
-                        echo '<label class="text-danger">'.$this->session->flashdata("error");
+                        echo '<label class="text-danger" id="login_error">'.$this->session->flashdata("error");
                     ?>
                 </div>
             </form>
@@ -146,21 +146,21 @@
             var arrow =$('.arrow-up');
             var form =$('.login-form');
             var status = "false";
-
-            $('#login').click(function(event){
-                event.preventDefault();
-                if(status==false){
-                    arrow.fadeIn();
-                    form.fadeIn();
-                    status = true;
-                }
-                else{
-                   arrow.fadeOut();
-                    form.fadeOut();
-                    status = false;
-                }
-             })
-        })
+                $('#login').click(function(event){
+                    event.preventDefault();
+                    if(status==false){
+                        arrow.fadeIn();
+                        form.fadeIn();
+                        status = true;
+                    }
+                
+                    else{
+                    arrow.fadeOut();
+                        form.fadeOut();
+                        status = false;
+                    }
+                })
+            })
         </script>
         <script>
 

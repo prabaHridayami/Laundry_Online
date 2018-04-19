@@ -1,5 +1,10 @@
 <?php
     class Logins extends CI_Controller{
+        function __construct(){
+            parent::__construct();
+            $this->load->model('login');
+        }
+        
         function login_validation(){
             $this->load->library('form_validation');
             $this->form_validation->set_rules('username', 'Username', 'required');
@@ -8,9 +13,8 @@
             if($this->form_validation->run()){
                 //true
                 $username = $this->input->post('username');
-                $password = $this->input->post('password');
+                $password = md5($this->input->post('password'));
 
-                $this->load->model('login');
                 if($this->login->can_login($username, $password)){
                     $session_data = array(
                         'username' => $username
@@ -19,10 +23,11 @@
                     redirect(base_url().'logins/enter');
                 }else{
                     $this->session->set_flashdata('error','Invalid Username and Password');
+                    redirect(base_url().'dashbor');
                 }
 
             }else{
-                
+                redirect(base_url().'dashbor');
             }
         }
 
