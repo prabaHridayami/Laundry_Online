@@ -48,7 +48,13 @@
 
                 if($this->user->create_user($nama, $no_telp, $email, $username, $password, $tgl_lahir, $alamat, $jk, $kabupaten, $status)){
                     $this->session->set_flashdata('Successfully','Register is success');
-                    redirect('Pages/view/dashbor','refresh');
+                    echo "<script type='text/javascript'>alert('Registration success');</script>";
+                    redirect(base_url());
+                }
+                else{
+                    $this->session->set_flashdata('Failed','Register is failed');
+                    echo "<script type='text/javascript'>alert('Registration is failed');</script>";
+                    redirect(base_url());
                 }
             }
         }

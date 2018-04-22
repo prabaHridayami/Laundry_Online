@@ -19,7 +19,7 @@
                     $session_data = array(
                         'username' => $username
                     );
-                    $this->session->set_userdata($session_data);
+                    $this->session->set_userdata('logged_in',$session_data);
                     redirect(base_url().'logins/enter');
                 }else{
                     $this->session->set_flashdata('error','Invalid Username and Password');
@@ -33,7 +33,7 @@
 
         function enter(){
             if($this->session->userdata('username') !=" "){
-                redirect(base_url().'mydashbor');
+                redirect(base_url().'member');
             }else{
                 redirect(base_url().'dashbor');
             }
