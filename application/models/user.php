@@ -22,7 +22,8 @@
                 'tgl_lahir'     =>$tgl_lahir,
                 'status_member' =>$status,
                 'username'      =>$username,
-                'password'      =>$password
+                'password'      =>$password,
+                'login'         =>'False'
             );
 
             return $this->db->insert('member',$data);

@@ -19,7 +19,11 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
-	{
-		$this->load->view('pages/dashbor.php');
+	{	
+		if (isset($this->session->userdata['logged'])){
+			$this->load->view('pages/member.php');
+		}else{
+			$this->load->view('pages/dashbor.php');
+		}
 	}
 }

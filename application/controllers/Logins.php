@@ -1,47 +1,98 @@
 <?php
     class Logins extends CI_Controller{
-        function __construct(){
+        public function __construct(){
             parent::__construct();
             $this->load->model('login');
+            $this->load->library('Form_validation');
+            $this->load->helper(array('Form', 'Cookie', 'String'));
         }
-        
-        function login_validation(){
-            $this->load->library('form_validation');
-            $this->form_validation->set_rules('username', 'Username', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required');
-    
-            if($this->form_validation->run()){
-                //true
-                $username = $this->input->post('username');
-                $password = md5($this->input->post('password'));
 
-                if($this->login->can_login($username, $password)){
-                    $session_data = array(
-                        'username' => $username
+        public function cookies(){
+            // ambil cookie
+            $cookie = get_cookie('querty');
+            
+            // cek session
+            if ($this->session->userdata('logged')) {
+                redirect('member');
+            } else if($cookie <> '') {
+                // cek cookie
+                $row = $this->login->get_by_cookie($cookie)->row();
+                if ($row) {
+                    $this->_daftarkan_session($row);
+                } else {
+                    $data = array(
+                        'username' => set_value('username'),
+                        'password' => set_value('password'),
+                        'remember' => set_value('remember'),
+                        'message' => $this->session->flashdata('message'),
                     );
-                    $this->session->set_userdata('logged_in',$session_data);
-                    redirect(base_url().'logins/enter');
-                }else{
-                    $this->session->set_flashdata('error','Invalid Username and Password');
-                    redirect(base_url().'dashbor');
+                    $this->load->view('pages/member', $data);    
+                }
+            } else {
+                $data = array(
+                    'username' => set_value('username'),
+                    'password' => set_value('password'),
+                    'remember' => set_value('remember'),
+                    'message' => $this->session->flashdata('message'),
+                );
+                $this->load->view('logins/login', $data);            
+            }
+        }
+
+        function login(){
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $remember = $this->input->post('remember');
+
+            $row = $this->login->login($username, $password)->row();
+
+            if($row){
+                //true
+                if ($remember) {
+                    $key = random_string('alnum', 64);
+                    set_cookie('querty', $key, 3600*24*30); // set expired 30 hari kedepan
+                    
+                    // simpan key di database
+                    $update_key = array(
+                        'cookie' => $key
+                    );
+                    $this->login->update($update_key, $row->id);
                 }
 
+                $this->_daftarkan_session($row);
             }else{
-                redirect(base_url().'dashbor');
+                // login gagal
+                $this->session->set_flashdata('message','Login Gagal');
+                $this->cookies();
             }
         }
 
-        function enter(){
-            if($this->session->userdata('username') !=" "){
-                redirect(base_url().'member');
-            }else{
-                redirect(base_url().'dashbor');
-            }
+        // function enter(){
+        //     if($this->session->userdata('username') !=" "){
+        //         redirect(base_url().'member');
+        //     }else{
+        //         redirect(base_url().'dashbor');
+        //     }
+        // }
+
+        public function _daftarkan_session($row) {
+            // 1. Daftarkan Session
+            $sess = array(
+                'logged' => TRUE,
+                'id' => $row->id,
+                'username' => $row->username,
+            );
+            $this->session->set_userdata($sess);
+                
+            // 2. Redirect ke home
+            redirect('member');        
         }
 
         function logout(){
-            $this->session->unset_userdata('username');
-            redirect(base_url().'dashbor');
+           // delete cookie dan session
+            delete_cookie('querty');
+            $this->session->sess_destroy();
+            redirect(base_url());
         }
     }
     

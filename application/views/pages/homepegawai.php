@@ -8,8 +8,8 @@
     <link rel="shortcut icon" href="<?php echo base_url()?>assets/image/title-logo.png">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/member/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/member/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/css/fonticons.css" />
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/css/portfolio.jquery.css" />

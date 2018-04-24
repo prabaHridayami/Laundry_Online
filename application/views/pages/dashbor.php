@@ -6,7 +6,14 @@
     echo 'alert("Registration Success")';
     echo '</script>';
     }
-?>                    
+?>
+    <?php
+    if (isset($this->session->userdata['logged'])) {
+        $username = ($this->session->userdata['username']);
+    } else {
+        $this->session->set_flashdata('error','Invalid Username and Password');
+    }
+    ?>                    
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -77,7 +84,10 @@
     </nav>
     <div class="arrow-up"></div>
         <div class="login-form">
-            <form method="post" action="<?php echo base_url()?>logins/login_validation">
+            <form method="post" action="<?php echo base_url()?>logins/login">
+            <?php
+                echo form_open(site_url('logins/login'));
+            ?>
                 <div>
                     <label for="">Username</label>
                     <input id="user" name='username' type="text" placeholder="Username" required/>
@@ -85,6 +95,9 @@
                 <div>
                     <label for="">Password</label>
                     <input id="pass" name='password' type="password" placeholder="Password" required/>
+                </div>
+                <div>
+                    <input type="checkbox" name="remember" value="TRUE" id="remember" /><label>Remember Me</label>
                 </div>
                 <div>
                     <input id="login-bot" type="submit" value="Login" />
