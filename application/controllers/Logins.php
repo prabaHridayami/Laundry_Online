@@ -24,9 +24,9 @@
                         'username' => set_value('username'),
                         'password' => set_value('password'),
                         'remember' => set_value('remember'),
-                        'message' => $this->session->flashdata('message'),
+                        'message' => $this->session->flashdata('message')
                     );
-                    $this->load->view('pages/member', $data);    
+                    $this->load->view('pages/dashbor', $data);    
                 }
             } else {
                 $data = array(
@@ -35,7 +35,7 @@
                     'remember' => set_value('remember'),
                     'message' => $this->session->flashdata('message'),
                 );
-                $this->load->view('logins/login', $data);            
+                $this->load->view('pages/dashbor', $data);            
             }
         }
 
@@ -48,7 +48,7 @@
 
             if($row){
                 //true
-                if ($remember) {
+                if ($remember=='TRUE') {
                     $key = random_string('alnum', 64);
                     set_cookie('querty', $key, 3600*24*30); // set expired 30 hari kedepan
                     
@@ -80,7 +80,7 @@
             $sess = array(
                 'logged' => TRUE,
                 'id' => $row->id,
-                'username' => $row->username,
+                'username' => $row->username
             );
             $this->session->set_userdata($sess);
                 

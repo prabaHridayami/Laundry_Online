@@ -26,7 +26,7 @@
 <div class="container">
     <div class="nav-top clearfix">
         <div class="logo">
-            <a class="navbar-brand" href="<?php echo base_url()?>">
+            <a class="navbar-brand" href=" ">
                 <img class="logonav" src="<?php echo base_url()?>assets/image/logo-laundry.png" alt="logo">
             </a>
         </div>

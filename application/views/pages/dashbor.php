@@ -6,14 +6,7 @@
     echo 'alert("Registration Success")';
     echo '</script>';
     }
-?>
-    <?php
-    if (isset($this->session->userdata['logged'])) {
-        $username = ($this->session->userdata['username']);
-    } else {
-        $this->session->set_flashdata('error','Invalid Username and Password');
-    }
-    ?>                    
+?>                  
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -86,7 +79,7 @@
         <div class="login-form">
             <form method="post" action="<?php echo base_url()?>logins/login">
             <?php
-                echo form_open(site_url('logins/login'));
+
             ?>
                 <div>
                     <label for="">Username</label>
