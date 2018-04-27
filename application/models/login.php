@@ -2,6 +2,7 @@
     class login extends CI_Model{
 
         private $table = "member";
+        private $table2 = "pegawai";
         private $pk = "id";
 
         public function __construct() {
@@ -28,6 +29,12 @@
         {
             $this->db->where('cookie', $cookie);
             return $this->db->get($this->table);
+        }
+
+        public function adminLogin($username,$password){
+            $this->db->where('username', $username);
+            $this->db->where('password', $password);
+            return $this->db->get($this->table2);
         }
 
         // public function delete_cookie($cookie)

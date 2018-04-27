@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <?php
+<?php
     if (isset($this->session->userdata['logged'])) {
-        $username = ($this->session->userdata['username']);
+        $username = $this->session->userdata['username'];
     } else {
         $this->session->set_flashdata('error','Invalid Username and Password');
     }
-    ?>
+?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

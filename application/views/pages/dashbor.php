@@ -94,10 +94,10 @@
                 </div>
                 <div>
                     <input id="login-bot" type="submit" value="Login" />
-                    <?php
-                        echo '<label class="text-danger" id="login_error">'.$this->session->flashdata("error");
-                    ?>
                 </div>
+                <?php
+                        echo '<label class="text-danger" id="login_error">'.$this->session->flashdata("message");
+                ?>
             </form>
         </div>
 

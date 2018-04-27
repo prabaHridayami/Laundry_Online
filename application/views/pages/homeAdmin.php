@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
-
+<?php
+    if (isset($this->session->userdata['logged'])) {
+        $username = ($this->session->userdata['username']);
+    } else {
+        $this->session->set_flashdata('error','Invalid Username and Password');
+    }
+?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -60,7 +66,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" style="font-family: sans-serif">
+                    <a href="<?php echo base_url()?>/adminLogins/logoutAdmin" style="font-family: sans-serif">
                         <i class="glyphicon glyphicon-off"></i>
                         Log Out
                     </a>
@@ -76,11 +82,11 @@
                 </a>
             </div>
             <nav class="navbar" id="navbar">
-                <a href="#" class="navbar-left" id="sidebarCollapse">
+                <!-- <a href="#" class="navbar-left" id="sidebarCollapse">
                     <i class="glyphicon glyphicon-th-list">
                     </i>
-                </a>
-
+                </a> -->
+                <a href="#" id="account" style="float:left; margin-top:15px; margin-left:50px;"><span class="glyphicon glyphicon-user" style="right:10px;"></span><?php echo $username ?></a>
             </nav>
         </div>
         <div class="mainContent" id="mainContent">

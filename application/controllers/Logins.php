@@ -67,22 +67,16 @@
             }
         }
 
-        // function enter(){
-        //     if($this->session->userdata('username') !=" "){
-        //         redirect(base_url().'member');
-        //     }else{
-        //         redirect(base_url().'dashbor');
-        //     }
-        // }
-
         public function _daftarkan_session($row) {
             // 1. Daftarkan Session
             $sess = array(
                 'logged' => TRUE,
+                'user' => TRUE,
                 'id' => $row->id,
                 'username' => $row->username
+
             );
-            $this->session->set_userdata($sess);
+            $this->session->set_userdata($sess,'user');
                 
             // 2. Redirect ke home
             redirect('member');        
